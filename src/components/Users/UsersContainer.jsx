@@ -14,6 +14,7 @@ import Users from "./Users";
 import userPhoto from "../../asetts/images/user.png";
 import withAuthUseNavigate from "../../hoc/withAuthUseNavigate";
 import { compose } from "redux";
+import { currentPage, followingInProgress, isFetching, pageSize, totalUserCount, users } from "../Redux/Users-selectors";
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
     debugger
@@ -49,12 +50,12 @@ class UsersAPIComponent extends React.Component {
 
 let mapStateToPropos = (state) => {
   return {
-    followingInProgress: state.usersPage.followingInProgress,
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUserCount: state.usersPage.totalUserCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
+    followingInProgress: followingInProgress(state),
+    users: users(state),
+    pageSize: pageSize(state),
+    totalUserCount: totalUserCount(state),
+    currentPage: currentPage(state),
+    isFetching: isFetching(state) ,
   };
 };
 // let mapDispatchToProps = (dispatch) => {
