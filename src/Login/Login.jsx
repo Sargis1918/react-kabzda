@@ -13,7 +13,7 @@ const LoginForm = (props) => {
     
     <form className="login_form" onSubmit={props.handleSubmit}>
     
-      <div className="login_header">Login</div>
+      <div className="login_header">ogin</div>
       <div className="login_input">
         
         <Field className="login_b"  validate={[required]} name="email" component={LoginTextarea} type="text" placeholder="Login" />
