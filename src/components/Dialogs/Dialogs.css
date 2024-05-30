@@ -1,0 +1,53 @@
+.dialogs {
+   color: #8190a5;
+}
+
+.dialogs__title {
+   
+   color: rgb(71, 51, 60);
+}
+
+.dialogs__body {
+   display: grid;
+   grid-template-columns: 2fr 2fr;
+}
+
+.dialogs__column {
+   padding: 0px 0px 0px 70px;
+   min-height: 100%;
+}
+
+.dialogs__column-border {
+   border-right: 1px solid #7e55f3;
+}
+
+.dialogs__textarea {
+   padding: 3px 0px 0px 10px;
+   font-size: 20px;
+   border: 2px solid;
+   border-right: 0;
+   width: 100%;
+   height: 40px;
+}
+
+.dialogs__textarea-body {
+   display: grid;
+   grid-template-columns: 9fr 1fr;
+   padding: 30px;
+}
+
+
+
+.dialogs__textarea-button-item {
+   
+   border: 2px solid black;
+   border-left: 0;
+   background-color: #0cb658;
+   width: 100%;
+   height: 40px;
+   color: #ffff;
+   font-size: 26px;
+   padding: 0 15px;
+   text-align: center;
+   display: block;
+}

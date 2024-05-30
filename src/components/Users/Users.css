@@ -1,0 +1,131 @@
+.users {
+  position: relative;
+  text-align: center;
+
+  width: 100%;
+}
+.users__header {
+  font-size: 35px;
+  margin: 0px 0px 50px 40px;
+  text-align: left;
+}
+.users__container {
+  margin: 0px 0px 0px 10px;
+  width: 80%;
+}
+.users__body {
+  display: flex;
+  flex-direction: column;
+}
+.users__info {
+  margin: 0px 0px 40px 0px;
+  display: flex;
+}
+
+.users__img-subscribe {
+  margin: 0px 10px 0px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.users__img {
+  object-fit: cover;
+  width: 100px;
+  margin: 0px 0px 15px 0px;
+}
+.users__img img {
+  max-width: 100%;
+}
+.users__subscribe {
+   
+  border: 1px solid black;
+  color: #ffff;
+  font-size: 18px;
+  background-color: #0cb658;
+  width: 120px;
+  height: 30px;
+}
+.users__name-town-some-else {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #c0ccda;
+  background-color: #ffff;
+  box-shadow: 2px 2px 10px;
+  height: 90px;
+  width: 100%;
+}
+.users__show-more {
+  display: flex;
+  justify-content: center;
+}
+.users__show-more-item {
+  border: 1px solid black;
+  font-weight: 600;
+  font-size: 25px;
+  width: 260px;
+  height: 70px;
+  color: #ffff;
+  background-color: #0cb658;
+}
+
+.users__city,
+.users__country {
+  display: block;
+
+  margin: 0px 0px 8px 0px;
+  padding: 10px;
+}
+.users__name {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.users__status {
+   
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.users__country {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.users__city {
+  font-size: 18px;
+  font-weight: 700;
+}
+.users__number {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.users ul {
+  padding: 10px 0px 0px 0px;
+  display: inline-flex;
+  margin: 0px 0px 50px 0px;
+}
+.users__page {
+  padding: 0px 10px 0px 10px;
+  background-color: transparent;
+  font-size: 16px;
+
+  font-weight: 700;
+}
+.users__selectedPage {
+  display: block;
+  background-color: transparent;
+  color: rgb(250, 213, 35);
+  font-weight: 700;
+  font-size: 20px;
+
+  padding: 0px 10px 0px 10px;
+}
+.users__loader {
+  position: fixed;
+  top: 50%;
+  right: 38%;
+}

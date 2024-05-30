@@ -1,0 +1,34 @@
+.header {
+   position: fixed;
+   background-color: #31eaa3;
+
+   border: 1px solid;
+   
+   height: 60px;
+   z-index: 50;
+   width: 100%; 
+   
+}
+.header__img-item {
+   max-width: 100%;
+}
+.header__img {
+   width: 40px;
+   height: 40px;
+}
+.header__login-block{
+   font-size: 18px;
+   font-weight: bold;
+   display: flex;
+   flex-direction: column;
+   text-align: right;
+   margin: -30px 20px 0px 0px;
+   color: azure;
+}
+.header_login{
+   color:azure;
+}
+.header_logout-button{
+   color: azure;
+   background-color: #31eaa3;
+}
