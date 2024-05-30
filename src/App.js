@@ -26,7 +26,7 @@ class App extends Component {
       return<Preloader/>}
     return (
       <div className="app-wrapper">
-        {this.props.auth === false ? (
+        {!this.props.auth === false ? (
           <div className="login_wrapper">
             <HeaderContainer />
             <Routes>
