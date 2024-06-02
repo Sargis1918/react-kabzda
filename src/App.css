@@ -9,7 +9,7 @@
     display: grid;
     grid-template-areas: "header header  " "nav con ";
     grid-template-rows: 60px 100%;
-    grid-template-columns: 225px 100%;
+    grid-template-columns: 225px 80%;
     grid-gap: 10px;
     
 }
