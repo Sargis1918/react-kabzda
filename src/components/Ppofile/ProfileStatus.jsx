@@ -1,75 +1,51 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import {useNavigate} from "react-router-dom"
+const ProfileStatus = (props) => {
 
-class ProfileStatus extends React.Component {
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
+  const statusInputRef = useRef(null);
 
-  state = {
-    
-    editMode: false,
-    status: this.props.status,
+  const activateEditMode = () => {
+    setEditMode(true);
   };
-
-  activateEditMode = () => {
-    this.setState({
-      editMode:true,
-    });
-    
-  };
-  deActivateEditMode = () => {
-    this.setState(
-      {
-        editMode:false,
-      },
-      
-        this.props.updateStatus(this.state.status)
-      
-    );
-  
-
-  };
-
-  onStatusChange = (e) => {
-    
-    this.setState({
-      status: e.currentTarget.value,
-    });
-  
-  };
-
- componentDidUpdate(prevProps,prevState){
-  
-  if(prevProps.status !== this.props.status){
-
-    this.setState(
-    {
-      status: this.props.status
-    }
-  )}
-  
- }
-  render() {
+ const navigate=useNavigate()
+  const deActivateEditMode = () => {
    
-    return (
-      <div className="profile-status-wrapper">
-        
-        <div className="profile-status" onClick={this.activateEditMode}>
-          {this.props.status || "------"}
-        </div>
+     setEditMode(false);
+     props.updateStatus(status);
+     navigate(`/profile/${props.myUserId}`)
   
-        {this.state.editMode && (
-          <div className="profile-status-value">
-            <input
-            ref={this.statusInputRef}
-              className="profile-status-value-input "
-              autoFocus={true}
-              onBlur={this.deActivateEditMode }
-              value={this.state.status}
-              onChange={this.onStatusChange}
-              
-            />
-          </div>
-        )}
+  };
+
+  const onStatusChange = (e) => {
+    setStatus(e.currentTarget.value);
+  };
+
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status]);
+
+  return (
+    <div className="profile-status-wrapper">
+      <div className="profile-status" onClick={activateEditMode}>
+        {props.status || "------"}
       </div>
-    );
-  }
-}
+
+      {editMode && (
+        <div className="profile-status-value">
+          <input
+            ref={statusInputRef}
+            className="profile-status-value-input"
+            autoFocus={true}
+            onBlur={deActivateEditMode}
+            value={status}
+            onChange={onStatusChange}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default ProfileStatus;

@@ -9,14 +9,14 @@ const LoginFormRedux = reduxForm({
   })(LoginForm);
   
   const LoginContainer=(props)=>{
-   
+    
     const navigate= useNavigate()
     const onSubmit=(formData)=>{
       
         props.login(formData.email,formData.password,formData.rememberMe)
     }
     
-    if(props.isAuth){navigate (`/profile/${props.myUserId}`)}
+   
     
     
     return(

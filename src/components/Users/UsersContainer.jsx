@@ -17,7 +17,7 @@ import { compose } from "redux";
 import { currentPage, followingInProgress, isFetching, pageSize, totalUserCount, users } from "../Redux/Users-selectors";
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
-    debugger
+
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
   onPageChanged = (pageNumber) => {

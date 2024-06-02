@@ -44,7 +44,9 @@ let initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
+  
   switch (action.type) {
+   
     case ADD_POST:
       let newPost = {
         id: 5,
@@ -77,9 +79,10 @@ export const setUserProfile = (profile) => {
   };
 };
 export const setStatus = (status) => {
+  
   return {
     type: SET_STATUS,
-    status,
+    status:status
   };
 };
 
