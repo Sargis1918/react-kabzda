@@ -13,19 +13,15 @@ const ProfileStatus = (props) => {
   };
 
   const deActivateEditMode = () => {
-    setEditModePromise().then(()=>{
+    for(let i=0;i<2;i++){  
+    setEditMode(false)
       props.updateStatus(status);
       navigate(`/profile/${props.myUserId}`);
-    })
+    }}
     
      
-  };
-  const setEditModePromise=()=>{
-    return new Promise((resolve)=>{
-      setEditMode(false)
-      resolve()
-    })
-  }
+
+
 
   const onStatusChange = (e) => {
     setStatus(e.currentTarget.value);

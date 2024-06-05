@@ -14,7 +14,7 @@ import Users from "./Users";
 import userPhoto from "../../asetts/images/user.png";
 import withAuthUseNavigate from "../../hoc/withAuthUseNavigate";
 import { compose } from "redux";
-import { currentPage, followingInProgress, isFetching, pageSize, totalUserCount, users } from "../Redux/Users-selectors";
+import { currentPage, followingInProgress, isFetching, pageSize, totalUserCount, users,  } from "../Redux/Users-selectors";
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
 

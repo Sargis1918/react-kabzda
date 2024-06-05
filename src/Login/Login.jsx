@@ -10,9 +10,8 @@ const LoginForm = (props) => {
     
   <div className="login">
     
-    
+   
     <form className="login_form" onSubmit={props.handleSubmit}>
-    
       <div className="login_header">Login</div>
       <div className="login_input">
         
@@ -40,11 +39,12 @@ const LoginForm = (props) => {
       </span>
       <div className="login_button">
         <button type="submit">Login</button>
-        
-      </div>
+       
+      </div> 
       </div>
       
-    </form></div>
+    </form>
+    </div>
   );
 };
 
