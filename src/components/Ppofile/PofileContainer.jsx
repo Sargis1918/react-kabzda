@@ -21,7 +21,6 @@ useEffect(() => {
     <div className="profile">
       <ProfileInfo
         {...props}
-        //  status = {props.status}
         profile={props.profile}
         userIcon={userIcon}
         largeIcon={largeIcon}
