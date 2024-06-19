@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ProfileStatus = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [status, setStatus] = useState(props.status);
-  
-  const statusInputRef = useRef(null);
+
   const navigate = useNavigate();
 
   const activateEditMode = () => {
@@ -13,29 +12,16 @@ const ProfileStatus = (props) => {
   };
 
   const deActivateEditMode = () => {
-    for(let i=0;i<2;i++){  
-    setEditMode(false)
-      props.updateStatus(status);
+    setEditMode(false);
+    props.updateStatus(status);
+    for (let i = 0; i < 2; i++) {
       navigate(`/profile/${props.myUserId}`);
-    }}
-    
-     
-
-
+    }
+  };
 
   const onStatusChange = (e) => {
     setStatus(e.currentTarget.value);
   };
-
-  useEffect(() => {
-    setStatus(props.status);
-  }, [props.status]);
-
-  useEffect(() => {
-    if (!editMode) {
-      navigate(`/profile/${props.myUserId}`);
-    }
-  }, [editMode, navigate, props.myUserId,]);
 
   return (
     <div className="profile-status-wrapper">
@@ -46,7 +32,6 @@ const ProfileStatus = (props) => {
       {editMode && (
         <div className="profile-status-value">
           <input
-            ref={statusInputRef}
             className="profile-status-value-input"
             autoFocus={true}
             onBlur={deActivateEditMode}

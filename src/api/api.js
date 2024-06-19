@@ -43,10 +43,12 @@ export const setStatusAPI = {
   },
 
   async updateStatus(status) {
+    
     const request = await instance.put(`profile/status`, { status: status });
     return request.data;
   },
   async getStatus(userId) {
+    
     const response = await instance.get(`profile/status/` + userId);
     
     return response.data;

@@ -23,7 +23,7 @@ const ProfileInfo = (props) => {
             />
           </div>
           <div>
-            <ProfileStatusWithHooks myUserId={props.params.userid} status={props.status} updateStatus={props.updateStatusThunk}/>
+            <ProfileStatus myUserId={props.params.userid} status={props.status} updateStatus={props.updateStatusThunk}/>
             </div>
           <div className="profile-info__info-body">
             

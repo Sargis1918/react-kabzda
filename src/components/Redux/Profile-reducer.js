@@ -40,7 +40,7 @@ let initialState = {
     },
   ],
   profile: null,
-  
+  status:''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -101,6 +101,7 @@ export const getStatusThunk = (params) => {
   
   return (dispatch) => {
     let userId = params.userid;
+   
     setStatusAPI.getStatus(userId).then((response) => {
       
       dispatch(setStatus(response));
