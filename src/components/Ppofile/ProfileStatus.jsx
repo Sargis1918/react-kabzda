@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProfileStatus = (props) => {
   const [editMode, setEditMode] = useState(false);
-  const [status, setStatus] = useState(props.status);
-
+  const [status, setStatus] = useState(props.status)
   const navigate = useNavigate();
 
   const activateEditMode = () => {
@@ -13,8 +12,9 @@ const ProfileStatus = (props) => {
 
   const deActivateEditMode = () => {
     setEditMode(false);
+    for (let i = 0; i < 3; i++) {
     props.updateStatus(status);
-    for (let i = 0; i < 2; i++) {
+    
       navigate(`/profile/${props.myUserId}`);
     }
   };

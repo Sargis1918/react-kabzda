@@ -1,11 +1,9 @@
-import { useParams } from "react-router-dom";
-import { profileAPI, setStatusAPI } from "../../api/api";
-import myPhoto from "../../asetts/images/Sako.jpg";
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS = "SET_STATUS";
-const DELETE_POST = "DELETE_POST"
-let initialState = {
+
+jest.mock('../../asetts/images/Sako.jpg', () => 'mock-sako.jpg');
+
+import profileReducer, { addPost,deletePost } from "./Profile-reducer";
+import ReactDom from "react-dom"
+let state = {
   
   myPostData: [
     {
@@ -27,106 +25,42 @@ let initialState = {
       img: "data:image/jpeg;base64,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",
     },
   ],
-  myData: [
-    {
-      id: 1,
-      name: "Sargis H.",
-      city: "Yerevan",
-      dateOfBird: "8November",
-      education: "Raffi-n36 middle scooll",
-      photoUrlBig:
-        "https://www.kraftwerk.at/app/uploads/fly-images/962/reference-img-worlds-of-adventure-park-4-1920x9999.jpg",
-      photoUrl: myPhoto,
-    },
-  ],
-  profile: null,
-  status:''
-};
-
-const profileReducer = (state = initialState, action) => {
   
-  switch (action.type) {
-   
-    case ADD_POST:
-      let newPost = {
-        id: 5,
-        message: action.text,
-        like: 0,
-        img: myPhoto,
-      };
-      return {
-        ...state,
-        myPostData: [newPost, ...state.myPostData],
-
-        
-      };
-    case SET_USER_PROFILE:
-      return { ...state, profile: action.profile };
-    case SET_STATUS:
-      return { ...state, status: action.status };
-    default:
-      return state;
-      case DELETE_POST:
-        return{...state, myPostData:state.myPostData.filter(p=>p.id != action.postId)}
- 
-      }
-};
-export const addPost = (text) => ({
-   type: ADD_POST,
-  text:text
-});
-export const deletePost = (postId) => ({
-  type: DELETE_POST,
- postId:postId
-});
-export const setUserProfile = (profile) => {
-  return {
-    type: SET_USER_PROFILE,
-    profile,
-  };
-};
-export const setStatus = (status) => {
   
-  return {
-    type: SET_STATUS,
-    status:status
-  };
 };
+// 1. test data
+it('should be added new post',()=>{
+  let action=addPost('IT-KAMASUTRA.COM')
 
-export const withParams = (Component) => {
-  return (props) => <Component {...props} params={useParams()} />;
-};
-export const profileThunk = (params) => {
-  return (dispatch) => {
-    let userId = params.userid;
-    profileAPI.profileApi(userId).then((data) => {
-      dispatch(setUserProfile(data));
-    });
-  };
-};
-export const getStatusThunk = (params) => {
+  // 2. action
+  let newState=profileReducer(state,action)
+  // 3. expectation
+  expect(newState.myPostData.length).toBe(4)
+})
+it('message of new post should be correct',()=>{
+  let action=addPost('IT-KAMASUTRA.COM')
+
+  // 2. action
+  let newState=profileReducer(state,action)
+  // 3. expectation
   
-  return (dispatch) => {
-    let userId = params.userid;
-   
-    setStatusAPI.getStatus(userId).then((response) => {
-      
-      dispatch(setStatus(response));
-    });
-  };
-};
+   expect(newState.myPostData[0].message).toBe('IT-KAMASUTRA.COM')
+})
+it('delete post',()=>{
+  let action=deletePost(1)
 
-export const updateStatusThunk = (status) => {
-  return (dispatch) => {
-    
-    setStatusAPI.updateStatus(status).then((response) => {
-     
-      if (response.data.resaultCode === 0) {
-        dispatch(setStatus(status));
-       
-      }
-    });
-  };
-};
+  // 2. action
+  let newState=profileReducer(state,action)
+  // 3. expectation
+  
+    expect(newState.myPostData.length).toBe(2)
+})
+it('delete post',()=>{
+  let action=deletePost(1000)
 
-export default profileReducer;
+  // 2. action
+  let newState=profileReducer(state,action)
+  // 3. expectation
+  
+    expect(newState.myPostData.length).toBe(3)
+})
