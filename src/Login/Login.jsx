@@ -4,14 +4,14 @@ import { Field} from "redux-form";
 import { LoginTextarea } from "../common/Field-validation/Fiield Validation";
 import { required } from "../utilits/validators";
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit,error}) => {
   
   return (
     
   <div className="login">
     
    
-    <form className="login_form" onSubmit={props.handleSubmit}>
+    <form className="login_form" onSubmit={handleSubmit}>
       <div className="login_header">Login</div>
       <div className="login_input">
         
@@ -35,7 +35,7 @@ const LoginForm = (props) => {
         
         <Field name="rememberMe" component="input" type="checkbox" />
         <label>Remember me</label>
-        {props.error&&<span className="error_submit">{props.error}</span>}
+        {error&&<span className="error_submit">{error}</span>}
       </span>
       <div className="login_button">
         <button type="submit">Login</button>

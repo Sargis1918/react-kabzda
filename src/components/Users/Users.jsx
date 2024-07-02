@@ -13,7 +13,7 @@ const Users = (props) => {
       {props.isFetching ? props.preloader : null}
 
       {pages.map((p) => {
-        if (p <= 7) {
+        if (p <= 10) {
           return (
             <ul className="users__pagescount">
               <li>

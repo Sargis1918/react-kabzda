@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { profileAPI, setStatusAPI } from "../../api/api";
 import myPhoto from "../../asetts/images/Sako.jpg";
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS = "SET_STATUS";
-const DELETE_POST = "DELETE_POST"
+const ADD_POST = "profile/ADD-POST";
+const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
+const SET_STATUS = "profile/SET_STATUS";
+const DELETE_POST = "profile/DELETE_POST"
 let initialState = {
   
   myPostData: [
@@ -67,7 +67,7 @@ const profileReducer = (state = initialState, action) => {
     default:
       return state;
       case DELETE_POST:
-        return{...state, myPostData:state.myPostData.filter(p=>p.id != action.postId)}
+        return{...state, myPostData:state.myPostData.filter(p=>p.id !== action.postId)}
  
       }
 };
@@ -97,35 +97,34 @@ export const withParams = (Component) => {
   return (props) => <Component {...props} params={useParams()} />;
 };
 export const profileThunk = (params) => {
-  return (dispatch) => {
+  return async(dispatch) => {
     let userId = params.userid;
-    profileAPI.profileApi(userId).then((data) => {
-      dispatch(setUserProfile(data));
-    });
+   let response=await profileAPI.profileApi(userId)
+      dispatch(setUserProfile(response));
+    
   };
 };
 export const getStatusThunk = (params) => {
   
-  return (dispatch) => {
+  return async (dispatch) => {
     let userId = params.userid;
    
-    setStatusAPI.getStatus(userId).then((response) => {
-      
+     let response=await setStatusAPI.getStatus(userId)
       dispatch(setStatus(response));
-    });
+    
   };
 };
 
 export const updateStatusThunk = (status) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     
-    setStatusAPI.updateStatus(status).then((response) => {
+  let response=await setStatusAPI.updateStatus(status)
      
       if (response.data.resaultCode === 0) {
         dispatch(setStatus(status));
        
       }
-    });
+    
   };
 };
 

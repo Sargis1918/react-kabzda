@@ -7,12 +7,12 @@ const LoginFormRedux = reduxForm({
     form: "login",
   })(LoginForm);
   
-  const LoginContainer=(props)=>{
+  const LoginContainer=({login})=>{
     
     
-    const onSubmit=(formData)=>{
+    const onSubmit=({email,password,rememberMe})=>{
       
-        props.login(formData.email,formData.password,formData.rememberMe)
+        login(email,password,rememberMe)
     }
     
    

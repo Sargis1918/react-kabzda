@@ -1,7 +1,7 @@
 
 import myPhoto from '../../asetts/images/Sako.jpg'
-const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_DIALOG_TEXT = "UPDATE-NEW-DIALOG-TEXT";
+const ADD_MESSAGE = "dialog/ADD-MESSAGE";
+const UPDATE_NEW_DIALOG_TEXT = "dialog/UPDATE-NEW-DIALOG-TEXT";
 let initialState = {
   dialogsData: [
     { id: 1, photoUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3sIBap9PNcCSChwLbmjrVwLzJtmzcx4LFZNMfUtIWJZhk8P25625C19Wx-ZsdSPTLyb8&usqp=CAU', name: "Dmitry" },

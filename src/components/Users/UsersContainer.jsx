@@ -58,29 +58,6 @@ let mapStateToPropos = (state) => {
     isFetching: isFetching(state) ,
   };
 };
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     follow: (userId) => {
-//       dispatch(followAC(userId));
-//     },
-//     unfollow: (userId) => {
-//       dispatch(unfollowAC(userId));
-//     },
-//     setUsers: (users) => {
-//       dispatch(setUsersAC(users));
-//     },
-//     setCurrentPage: (pageNumber) => {
-//       dispatch(setCurrentPageAC(pageNumber));
-//     },
-//     setUsersTotalCount: (totalCount) => {
-//       dispatch(totalUsersCountAC(totalCount));
-//     },
-//     setFetching: (isFetching) => {
-//       dispatch(isFetchingAC(isFetching));
-//     },
-//   };
-// };
-
 export default compose(connect(mapStateToPropos, {
   toogleFollowingProgress,
   followSuccess,

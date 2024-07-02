@@ -27,7 +27,7 @@ export const unfollowAPI = {
 export const followAPI = {
   async followApi(id) {
     const response = await instance.post(`follow/${id}`);
-    return response.data;
+     return response.data;
   },
 };
 
