@@ -1,4 +1,5 @@
-import {applyMiddleware, combineReducers, createStore,compose} from "redux";
+import { combineReducers, compose} from "redux";
+import { configureStore, } from '@reduxjs/toolkit';
 import authReducer from "./Auth-reducer";
 import dialogsReducer from "./Dialogs-reducer";
 import friendsReducer from "./Friends-reducer";
@@ -20,6 +21,14 @@ let reducers = combineReducers({
 })
  
  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
- const store = createStore(reducers,  composeEnhancers( applyMiddleware(thunkMiddleware)));
-window.store=store;
+ const store = configureStore({
+   reducer: reducers,
+   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunkMiddleware),
+   devTools: composeEnhancers,
+ });
+ Object.defineProperty(window, 'store', {
+   value: store,
+   writable: true,
+   configurable: true
+ });
 export default store;

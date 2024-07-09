@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Users.css";
 const Users = (props) => {
-   
+ 
   let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+  let portionCount=Math.ceil(pagesCount/props.pageSize)
+  let [portionNumber,setportionNumber]=useState(1)
+  let leftPortionPageNumber=(portionNumber-1)*props.pageSize+1
+  let righttPortionPageNumber=portionNumber*props.pageSize
   return (
     <div className="users">
-      {props.isFetching ? props.preloader : null}
 
-      {pages.map((p) => {
-        if (p <= 10) {
+      {props.isFetching ? props.preloader : null}
+      
+      {portionNumber> 1&&<button onClick={()=>{setportionNumber(portionNumber-1)}} className="prev">{'<<'}</button>}
+      
+      {pages.filter(p=>p>=leftPortionPageNumber&&p<=righttPortionPageNumber).map((p) => {
+        
           return (
             <ul className="users__pagescount">
               <li>
@@ -23,7 +30,7 @@ const Users = (props) => {
                       ? "users__selectedPage"
                       : "users__page"
                   }
-                  onClick={(e) => {
+                  onClick={(_e) => {
                     props.onPageChanged(p);
                   }}
                 >
@@ -32,8 +39,9 @@ const Users = (props) => {
               </li>
             </ul>
           );
-        }
+        
       })}
+      {portionCount>portionNumber&&<button onClick={()=>{setportionNumber(portionNumber+1)}} className="next">{">>"}</button>}
       <div className="users__number"></div>
       <div className="users__header">Users</div>
       <div className="users__container">
@@ -56,19 +64,23 @@ const Users = (props) => {
                   </NavLink>
                   {u.followed ? (
                     <button
-                      disabled={props.followingInProgress.some(id=>id===u.id)}
+                      disabled={props.followingInProgress.some(
+                        (id) => id === u.id
+                      )}
                       className="users__subscribe"
                       onClick={() => {
-                        props.unfollow(u.id)
+                        props.unfollow(u.id);
                       }}
                     >
                       Unsubscribe
                     </button>
                   ) : (
                     <button
-                      disabled={props.followingInProgress.some(id=>id===u.id)}
-                      onClick={() => {props.follow(u.id)
-                        
+                      disabled={props.followingInProgress.some(
+                        (id) => id === u.id
+                      )}
+                      onClick={() => {
+                        props.follow(u.id);
                       }}
                       className="users__subscribe"
                     >

@@ -11,7 +11,9 @@ import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./Login/LoginContainer";
 import { getAuthUserData } from "./components/Redux/Auth-reducer";
-
+import { BrowserRouter } from "react-router-dom";
+import store from "./components/Redux/Redux-store";
+import { Provider } from "react-redux";
 import { connect } from "react-redux/es/exports";
 import { compose } from "redux";
 import { initializeApp } from "./components/Redux/App-reduser";
@@ -69,4 +71,16 @@ let mapStateToProps = (state) => {
     initialized:state.app.initialized
   };
 };
-export default compose(connect(mapStateToProps, { getAuthUserData, initializeApp }))(App);
+let AppContainer=compose(connect(mapStateToProps, { getAuthUserData, initializeApp }))(App);
+const MainApp=()=>{
+  return(
+<React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
+  )
+}
+export default MainApp

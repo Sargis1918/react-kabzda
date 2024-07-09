@@ -1,11 +1,13 @@
 module.exports = {
   transform: {
-    "^.+\\.(js|jsx)$": "babel-jest",
-    
-      "^.+\\.(jpg|jpeg|png|gif|webp|svg)$": "jest-transform-stub"
-    
-    
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
-  moduleFileExtensions: ["js", "jsx"],
-  transformIgnorePatterns: ["<rootDir>/node_modules/"]
+  moduleNameMapper: {
+    '\\.css$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|webp|svg|webr)$': 'jest-transform-stub'
+  },
+  transformIgnorePatterns: [
+    '/node_modules/(?!(react-redux|@babel/runtime)/)'
+  ],
+  testEnvironment: 'jsdom',
 };

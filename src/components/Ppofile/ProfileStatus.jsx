@@ -25,12 +25,12 @@ const ProfileStatus = (props) => {
 
   return (
     <div className="profile-status-wrapper">
-      <div className="profile-status" onClick={activateEditMode}>
+      <div data-testid="profile-status" className="profile-status" onClick={activateEditMode}>
         {props.status || "------"}
       </div>
 
       {editMode && (
-        <div className="profile-status-value">
+        <div data-testid="profile-status-value" className="profile-status-value">
           <input
             className="profile-status-value-input"
             autoFocus={true}
