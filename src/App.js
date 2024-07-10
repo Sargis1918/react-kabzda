@@ -1,13 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Navbar/Navbar";
-import ProfileContainer from "./components/Ppofile/PofileContainer";
+//import ProfileContainer from "./components/Ppofile/PofileContainer";
+
+
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+// import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./Login/LoginContainer";
 import { getAuthUserData } from "./components/Redux/Auth-reducer";
@@ -18,6 +20,8 @@ import { connect } from "react-redux/es/exports";
 import { compose } from "redux";
 import { initializeApp } from "./components/Redux/App-reduser";
 import Preloader from "./common/Preloader/Preloader";
+const ProfileContainer=React.lazy(()=>import('./components/Ppofile/PofileContainer'));
+const UsersContainer=React.lazy(()=>import('./components/Users/UsersContainer'));
 class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
@@ -47,13 +51,13 @@ class App extends Component {
                 <Routes>
                   <Route
                     path="profile/:userid"
-                    element={<ProfileContainer />}
+                    element={<Suspense fallback={<div>loading...</div>}><ProfileContainer /></Suspense>}
                   />
                   
                   <Route path="dialogs/*" element={<DialogsContainer />} />
                   <Route path="news" element={<News />} />
                   <Route path="music" element={<Music />} />
-                  <Route path="users" element={<UsersContainer />} />
+                  <Route path="users" element={<Suspense fallback={<div>loading...</div> }><UsersContainer /></Suspense>} />
                   <Route path="settings" element={<Settings />} />
                 </Routes>
               </div>
